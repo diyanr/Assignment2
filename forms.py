@@ -5,4 +5,5 @@ from wtforms.validators import DataRequired
 
 class SearchForm(FlaskForm):
     website = StringField('Website', validators=[DataRequired()])
+    records = StringField('Records', validators=[DataRequired()])
     submit = SubmitField('Get Data')
