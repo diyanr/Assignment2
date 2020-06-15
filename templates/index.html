@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Search</h1>
+    <form method="post" novalidate>
+        <p>
+            {{ form.website.label }}<br>
+            {{ form.website(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.records.label }}<br>
+            {{ form.records(size=32) }}<br>
+        </p>
+        <p>{{ form.submit() }}</p>
+        <h1>Results</h1>
+        <table>
+            <tr>
+                <th>Company Name</th>
+                <th>Purpose</th>
+            </tr>
+            {% for i in range(count) %}
+            <tr>
+                <td>{{ company[i] }}</td>
+                <td>{{ purpose[i] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </form>
+{% endblock %}
