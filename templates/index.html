@@ -8,6 +8,7 @@
             {{ form.website(size=32) }}<br>
         </p>
         <p>{{ form.submit() }}</p>
+        {% if company %}
         <h1>Results</h1>
         <table>
             <tr>
@@ -21,6 +22,6 @@
             </tr>
             {% endfor %}
         </table>
-
+        {% endif %}
     </form>
 {% endblock %}
