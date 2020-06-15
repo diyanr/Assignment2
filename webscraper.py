@@ -14,11 +14,14 @@ app.config.from_object(Config)
 
 @app.route('/index', methods=['GET', 'POST'])
 def search():
+    rowcount = 0
+    co_name = []
+    co_purpose = []
     form = SearchForm()
     if form.validate_on_submit():
-        target = form.website.data
+        target_url = form.website.data
         rowcount = form.records.data
-        co_name, co_purpose = getCompany(target, rowcount)
+        co_name, co_purpose = getCompany(target_url, rowcount)
     return render_template('index.html', form=form, count=rowcount, company=co_name, purpose=co_purpose)
 
 
