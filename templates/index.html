@@ -19,14 +19,14 @@
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
-        {% if company %}
+        {% if company.empty %}
         <h1>Results</h1>
         <table>
             <tr>
                 <th>Company Name</th>
                 <th>Purpose</th>
             </tr>
-            {% for key,value in company.iteritems() %}
+            {% for key,value in company.iterrows() %}
             <tr>
                 <td>{{ value['name'] }}</td>
                 <td>{{ value['purpose'] }}</td>
