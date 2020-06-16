@@ -26,7 +26,7 @@
                 <th>Company Name</th>
                 <th>Purpose</th>
             </tr>
-            {% for key,value in company.iterrows() %}
+            {% for key,value in company.iteritems() %}
             <tr>
                 <td>{{ value['name'] }}</td>
                 <td>{{ value['purpose] }}</td>
