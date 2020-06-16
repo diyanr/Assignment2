@@ -6,7 +6,7 @@ from forms import SearchForm
 
 from bs4 import BeautifulSoup
 from flask import Flask
-from flask import render_template
+from flask import render_template, flash
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -16,10 +16,13 @@ app.config.from_object(Config)
 def search():
     form = SearchForm()
     if form.validate_on_submit():
-        target_url = form.website.data
-        rowcount = int(form.records.data)
-        co_name, co_purpose = getCompany(target_url, rowcount)
-        return render_template('index.html', form=form, count=rowcount, company=co_name, purpose=co_purpose)
+        # target_url = form.website.data
+        # rowcount = int(form.records.data)
+        # co_name, co_purpose = getCompany(target_url, rowcount)
+        flash('Inputs requested for url {}, records {}'.format(
+            form.website.data, form.records.data))
+        return render_template('index.html', form=form)
+        # return render_template('index.html', form=form, count=rowcount, company=co_name, purpose=co_purpose)
     return render_template('index.html', form=form)
 
 
