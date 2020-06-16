@@ -26,10 +26,10 @@
                 <th>Company Name</th>
                 <th>Purpose</th>
             </tr>
-            {% for i in range(count) %}
+            {% for key,value in company.iterrows() %}
             <tr>
-                <td>{{ company[i] }}</td>
-                <td>{{ purpose[i] }}</td>
+                <td>{{ value['name'] }}</td>
+                <td>{{ value['purpose] }}</td>
             </tr>
             {% endfor %}
         </table>
