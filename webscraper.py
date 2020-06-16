@@ -16,11 +16,10 @@ app.config.from_object(Config)
 def search():
     form = SearchForm()
     if form.validate_on_submit():
-        # target_url = form.website.data
-        # rowcount = int(form.records.data)
+        target_url = form.website.data
+        rowcount = int(form.records.data)
         # co_name, co_purpose = getCompany(target_url, rowcount)
-        flash('Inputs requested for url {}, records {}'.format(
-            form.website.data, form.records.data))
+        flash('Inputs requested for url {}, records {}'.format(target_url, rowcount))
         return render_template('index.html', form=form)
         # return render_template('index.html', form=form, count=rowcount, company=co_name, purpose=co_purpose)
     return render_template('index.html', form=form)

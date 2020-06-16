@@ -6,10 +6,16 @@
         <p>
             {{ form.website.label }}<br>
             {{ form.website(size=32) }}<br>
+            {% for error in form.website.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.records.label }}<br>
             {{ form.records(size=32) }}<br>
+            {% for error in form.records.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
         {% if company %}
