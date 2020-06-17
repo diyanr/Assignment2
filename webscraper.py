@@ -2,7 +2,7 @@ import time
 import requests
 import pandas as pd
 from config import Config
-from forms import SearchForm
+from forms import SearchForm, ResultForm
 
 from bs4 import BeautifulSoup
 from flask import Flask
