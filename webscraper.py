@@ -21,11 +21,11 @@ def search():
         target_url = s_form.website.data
         rowcount = int(s_form.records.data)
         co_info = getCompany(target_url, rowcount)
-        session['co_info'] = co_info
+        session['co_info'] = co_info.to_json()
         return render_template('index.html', form1=s_form, form2=r_form, company=co_info)
     elif r_form.validate_on_submit():
         if 'co_info' in session:
-            co_info = session['co_info']
+            co_info = pd.DataFrame(session['co_info'])
             csv_data = co_info.to_csv(index=False)
             return Response(csv_data, mimetype="text/csv",
                             headers={"Content-disposition": "attachment; filename=mydata.csv"})
