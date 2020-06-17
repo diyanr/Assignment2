@@ -5,7 +5,7 @@ from config import Config
 from forms import SearchForm, ResultForm
 
 from bs4 import BeautifulSoup
-from flask import Flask
+from flask import Flask, session
 from flask import render_template, Response
 
 app = Flask(__name__)
@@ -21,11 +21,14 @@ def search():
         target_url = s_form.website.data
         rowcount = int(s_form.records.data)
         co_info = getCompany(target_url, rowcount)
+        session['co_info'] = co_info
         return render_template('index.html', form1=s_form, form2=r_form, company=co_info)
     elif r_form.validate_on_submit():
-        csv_data = co_info.to_csv(index=False)
-        return Response(csv_data, mimetype="text/csv",
-                        headers={"Content-disposition": "attachment; filename=mydata.csv"})
+        if 'co_info' in session:
+            co_info = session['co_info']
+            csv_data = co_info.to_csv(index=False)
+            return Response(csv_data, mimetype="text/csv",
+                            headers={"Content-disposition": "attachment; filename=mydata.csv"})
     return render_template('index.html', form1=s_form)
 
 
