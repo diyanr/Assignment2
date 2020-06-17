@@ -19,7 +19,7 @@
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
-        {% if company.empty %}
+        {% if not company.empty %}
         <h1>Results</h1>
         <table>
             <tr>
