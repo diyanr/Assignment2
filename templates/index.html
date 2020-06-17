@@ -2,37 +2,45 @@
 
 {% block content %}
     <h1>Search</h1>
+    {% if form1 %}
     <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
+        {{ form1.hidden_tag() }}
         <p>
-            {{ form.website.label }}<br>
-            {{ form.website(size=50) }}<br>
-            {% for error in form.website.errors %}
+            {{ form1.website.label }}<br>
+            {{ form1.website(size=50) }}<br>
+            {% for error in form1.website.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.records.label }}<br>
-            {{ form.records(size=10) }}<br>
-            {% for error in form.records.errors %}
+            {{ form1.records.label }}<br>
+            {{ form1.records(size=10) }}<br>
+            {% for error in form1.records.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form.submit() }}</p>
-        {% if company is defined %}
-        <h1>Results</h1>
-        <table>
-            <tr>
-                <th>Company Name</th>
-                <th>Purpose</th>
-            </tr>
-            {% for key,value in company.iterrows() %}
-            <tr>
-                <td>{{ value['name'] }}</td>
-                <td>{{ value['purpose'] }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        {% endif %}
+        <p>{{ form1.submit() }}</p>
     </form>
+    {% endif %}
+    {% if company is defined %}
+    <h1>Results</h1>
+    <table>
+        <tr>
+            <th>Company Name</th>
+            <th>Purpose</th>
+        </tr>
+        {% for key,value in company.iterrows() %}
+        <tr>
+            <td>{{ value['name'] }}</td>
+            <td>{{ value['purpose'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+        {% if form2 %}
+        <form action="" method="post" novalidate>
+            {{ form2.hidden_tag() }}
+            <p>{{ form2.submit() }}</p>
+        </form>
+        {% endif %}
+    {% endif %}
 {% endblock %}
