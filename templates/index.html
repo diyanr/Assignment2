@@ -19,7 +19,7 @@
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
-        {% if not company.empty %}
+        {% if company is defined %}
         <h1>Results</h1>
         <table>
             <tr>
