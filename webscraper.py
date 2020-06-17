@@ -41,7 +41,7 @@ def getCompany(target_url, count):
         d = dict(x.string.split(":") for x in soup.find_all('li'))
         name.append(d["Name"])
         purpose.append(d["Purpose"])
-        time.sleep(1)
+        time.sleep(0.01)
     return pd.DataFrame({"name": name, "purpose": purpose})
 
 
